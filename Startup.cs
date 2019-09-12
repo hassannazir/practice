@@ -77,7 +77,7 @@ namespace WebApplication17
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=First}/{action=AddNewStudent}/{id?}");
+                    template: "{controller=First}/{action=allstudents}/{id?}");
             });
         }
     }

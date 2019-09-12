@@ -46,5 +46,39 @@ namespace WebApplication17.Controllers
             ORM.SaveChanges();
             return View();
         }
+
+        public IActionResult AllStudents()
+        {
+            return View(ORM.Student.ToList());
+        }
+
+        public IActionResult DeleteStudent(int id)
+        {
+           var obj= ORM.Student.Find(id);
+            ORM.Student.Remove(obj);
+            ORM.SaveChanges();
+            return RedirectToAction("AllStudents");
+        }
+
+        [HttpGet]
+        public IActionResult EditStudent(int id)
+        {
+            var obj = ORM.Student.Find(id);
+            return View(obj);
+        }
+
+        [HttpPost]
+        public IActionResult EditStudent(Student S)
+        {
+            ORM.Student.Update(S);
+            ORM.SaveChanges();
+            return RedirectToAction("AllStudents");
+
+        }
+
+        public IActionResult StudentDetail(int id)
+        {
+            return View(ORM.Student.Find(id));
+        }
     }
 }
